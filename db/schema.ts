@@ -1,8 +1,28 @@
-import { integer, pgTable, varchar } from "drizzle-orm/pg-core";
+import { integer, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
-export const usersTable = pgTable("users", {
+export const resumeTable = pgTable("resumes", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  name: varchar({ length: 255 }).notNull(),
-  age: integer().notNull(),
-  email: varchar({ length: 255 }).notNull().unique(),
+  userId: integer(),
+  title: text(),
+  description: text(),
+  photoUrl: text(),
+  colorHex: text().default("#000000"),
+  borderStyle: text().default("squirecle"),
+  summery: text(),
+  firstName: text(),
+  jobTitle: text(),
+  city: text(),
+  country: text(),
+  phone: text(),
+  email: text(),
+  skills: text().array(),
+
+  createdAt: timestamp("createdAt", {
+    mode: "date",
+    precision: 3,
+  }).defaultNow(),
+  updatedAt: timestamp("updatedAt", {
+    mode: "date",
+    precision: 3,
+  }).$onUpdate(() => new Date()),
 });
