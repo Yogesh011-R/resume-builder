@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/layout/navbar";
+import { Navbar } from '@/components/layout/navbar';
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -6,10 +6,10 @@ interface MainLayoutProps {
 
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-    <>
+    <div className="flex min-h-screen flex-col">
       <Navbar />
       {children}
-    </>
+    </div>
   );
 };
 
